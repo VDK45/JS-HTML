@@ -333,9 +333,9 @@ for (let key in person4) {
 console.log('============ 12. Классы. Конструкторы объектов  =============');  
 
 class Person {
-    constructor(userName, age, isMarried) {
+    constructor(userName, userAge, isMarried) {
     this.name = userName;
-    this.age = age;
+    this.age = userAge;
     this.isMarried = isMarried;
     }
     sayHi(name) {
@@ -350,6 +350,405 @@ console.log(man2);
 man1.sayHi('VDK45')
 man2.sayHi('VDK45')
 
+// ============ 13. Выбор DOM элементов   =============
+console.log('============ 13. Выбор DOM элементов =============');  
+console.log('=== 13.1 Выбор одного DOM элемента по селекту ===');  
+
+// qs -> TAB (installed js snippets)
+// Выбор одного DOM элемента по селекту
+// document.querySelector('Selector') 
+// Находит только первый элемент по селекту
+
+// document.querySelector('h1');               // Find tag: h1
+// document.querySelector('.myClass');         // Find class: myClass
+// document.querySelector('#myId');              // Find id: myId
+// document.querySelector('h1.myClass #myID');     // 
+
+const heading1 = document.querySelector('.tag_p');     
+console.log(heading1);
+
+const heading2 = document.querySelector('p');    
+heading2.classList.add('.tag_p');        // Добавить в теге p класс tag_p
+
+console.log('=== 13.2 Выбор колекции элементов ===');  
+
+// Масив 
+const headers = document.querySelectorAll('.h1');
+console.log(headers)
+
+// переборы масива по селекту с добавлением элементов
+for (let item of headers ) {
+    item.classList.add('red_text');
+};
+
+const paragraphs = document.querySelectorAll('p');
+paragraphs.forEach(function (item) {item.classList.add('green_text')})
+
+console.log('=== 13.3 ещё методы ===');  
+
+document.getElementsByClassName('my_class');  // Без точки '.my_class'
+document.getElementsByTagName('myTag');         
+document.getElementById('myid');              // Без #  '#myid'
+
+//  ============ 14. Работа с CSS class  =============
+console.log('============ 14. Работа с CSS class =============');  
+
+/*
+element.classList.add()
+element.classList.remove()
+element.classList.toggle()
+element.classList.contains()
+*/
+
+const head = document.querySelector('button');
+
+head.classList.add('green_text');
+head.classList.remove('green_text');
+head.classList.toggle('green_text');
+console.log(head.classList.contains('green_text'));     // true & false
+
+//  ============ 15. Работа с атрибутами   =============
+console.log('============ 15. Работа с атрибутами =============');  
+
+/*
+    getAttribute(attrName)          - Возвращает значение указаного атрибута
+    setAttribute(attrName. value)   - Добавляет атрибут и  значение к элементу
+    hasAttribute(attrName)          - Возвращает true или false
+    removeAttribute(attrName)       - Удаляет атрибут
+
+    toggleAttribute(attrName, force) - Добавляет атрибут если нет или наобарот
+    hasAttributes()                  - Возвращает true если есть атрибуты
+    getAttributesNames()             - Возвращает название атрибута
+
+*/
+
+const img = document.querySelector('#logoJs');
+console.log(img);
+
+const srcValue = img.getAttribute('src');
+console.log(srcValue);
+
+img.setAttribute('src', './img/new_js.png');
+img.setAttribute('width', '200');
+img.src = 'js.png';         // Напрямую
+
+(document.getElementById('logo_js')).removeAttribute('width');  
+(document.getElementById('logo_js')).setAttribute('width', '50');  
+
+
+console.log(img.hasAttribute('id'));
+console.log(img.hasAttribute('false'));
+
+const button =  document.getElementById('button');
+console.log(button);
+button.setAttribute('value', 'SEND')
+button.value = 'Send button'
+
+//  ============ 16. Работа с прослушкой событий  =============
+console.log('============ 16. Работа с прослушкой событий =============');  
+
+const inputText =  document.querySelector('#input-text');
+const textBlock =  document.getElementById('text-block');
+
+console.log(inputText);
+console.log(textBlock);
+
+const logoJs = document.querySelector('#logoJs');
+const delButton = document.querySelector('#delLogoButton');
+
+delButton.value = 'Delete logoJS';
+
+// Одно действия 
+// delButton.onclick = function () {
+//     console.log('click');
+//     logoJs.remove();
+// }
+
+// Много действия 
+delButton.addEventListener('click', function() {
+    console.log('действие 1');
+    logoJs.remove();
+});
+
+delButton.addEventListener('click', function() {
+    console.log('действие 2');
+    logoJs.remove();
+});
+
+
+console.log('=== Работа с прослушкой событий по форме ===');  
+
+/*
+// Краткая запись
+inputText.addEventListener('input', function() {
+    console.log(':Input!')
+    //console.log(inputText.value)
+    textBlock.innerText = inputText.value;
+} );
+*/
+
+// Полная запись функция
+inputText.addEventListener('input', inputHandler);  // функция без скобок inputHandler()
+
+function inputHandler() {
+    console.log(':Input!')
+    //console.log(inputText.value)
+    textBlock.innerText = inputText.value;
+};
+
+console.log('=== Работа с прослушкой событий по event ===');  
+
+const list = document.querySelector('#list');
+
+list.addEventListener('click', function(event) {
+    // console.log(this);
+    // console.log(event);
+    console.log(event.target);
+})
+
+console.log('=== Работа с элементами ===');  
+
+/*
+// Создать элемент
+document.createElement('tag-name')
+
+// Изменить HTML содержимое внутри элемента
+element.innerHTML = ''
+
+// Изменить текстовое содержимое внутри элемента
+node.innerText = ''
+
+// Клонирование элемента
+node.cloneNode()    // true - с внутреним содержимым (текст или теги),
+                    // false - без внутреннего содержимого
+
+// Вставить элемент внутри другово элемента
+element.append(nodesrDOMStrings)
+
+// Удалить элемент
+element.remove()
+*/
+
+// Выбор контейнера
+const container = document.querySelector('#elementsContainer');
+
+// Создание заголовка
+const newHeader =  document.createElement('h2');
+newHeader.innerText = 'Новый заголовок';
+container.append(newHeader);
+
+// Копирование шапки
+const mainHeader = document.querySelector('header');
+const headerCopy = mainHeader.cloneNode(true);  // true & false
+container.append(headerCopy);
+
+// Вставка разметка через строки
+const htmlExample = '<h3>Вставка разметка через строки</h3>';
+container.insertAdjacentHTML('beforeend', htmlExample);
+
+const text_1 = 'My text afterbegin';
+container.insertAdjacentText('afterbegin', text_1);
+
+// Вставка разметка через шаблонные метки
+const title = 'Текст заголовка';
+const htmlExample2 = `<h2>${title}</h2>`;
+
+container.insertAdjacentHTML('beforeend', htmlExample2);
+
+// TODO список задач
+
+const todo_list = document.querySelector('#todo-list');
+const todo_form = document.querySelector('#todo-form');
+const todo_input = document.querySelector('#todo-input');
+
+// Сулушать событие submit
+todo_form.addEventListener('submit', formHandler); 
+
+function formHandler(event) {
+    // Отменяет перезагрузку страницы по стандарту
+    event.preventDefault();     
+    
+    // Получаем текст из todo-input
+    const valueTodoInput = todo_input.value;
+
+    // Создать тег <li> через шаблонные метки
+    // const htmlTodoInput = `<li>${valueTodoInput}</li>`;
+
+    // add task
+    // todo_list.insertAdjacentHTML('beforeend', htmlTodoInput);
+
+    // Создать тег <li> спомощью создания элемента
+    const newTask = document.createElement('li');
+    newTask.innerText = valueTodoInput;
+
+    // Create delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.setAttribute('role', 'button');
+    deleteButton.innerText = 'Удалить';
+    deleteButton.style['margin-left'] = '15px';
+    newTask.append(deleteButton);
+
+    // Событие по клику
+    // deleteButton.addEventListener('click', deleteTask)
+    deleteButton.addEventListener('click', function() {
+        this.closest('li').remove();
+    })
+
+
+    // add task
+    todo_list.append(newTask);
+
+    // Очищать поле ввода
+    todo_input.value = '';
+
+    // Перевод фокуса обратно в поле ввода
+    todo_input.focus();
+};
+
+// deleteTask
+function deleteTask () {
+    this.closest('li').remove();
+}
+
+// ======= setInterval ========
+
+const timerIntervalId = setInterval(function() {
+    console.log('Set interval');
+}, 1000);
+
+clearInterval(timerIntervalId)
+
+// ======= setTimeOut ========
+
+const timerTimeOut = setTimeout(function () {
+    console.log("Set time out");
+}, 5000)
+
+clearInterval(timerTimeOut)
+
+// ======= setInterval + setTimeOut ========
+
+// const timerSIID = setInterval(function() {
+//     console.log('Set interval 2');
+// }, 1000);
+
+// setTimeout(function () {
+//     console.log("Stop timerSIID");
+//     clearInterval(timerSIID)
+// }, 5000)
+
+// ===== Секундомер ======
+
+const divCounter = document.querySelector('#counter');
+const idStart = document.querySelector('#start');
+const idPause = document.querySelector('#pause');
+const idReset = document.querySelector('#reset');
+
+let counter = 0;
+let idTimer;
+
+// Start button
+idStart.onclick = function() {  
+    idTimer = setInterval(function() {
+    // counter += 1;
+    counter++;
+    divCounter.innerText = counter;
+    console.log('idTimer', idTimer);
+}, 1000);
+};
+
+// Pause button
+idPause.onclick = function() {
+    clearInterval(idTimer)
+};
+
+// Reset button
+idReset.onclick = function() {
+    clearInterval(idTimer)
+    counter = 0;
+    divCounter.innerText = counter;
+
+};
+
+// ======== Callback. Callback hell ========
+
+// // Asynchrony - Асинхроность
+// setTimeout(() => {
+//     console.log('Step 1');
+//     setTimeout(() => {
+//         console.log('Step 2');
+//         setTimeout(() => {
+//             console.log('Step 3');
+//         }, 1000);
+//     }, 2000);
+// }, 3000);
+
+// Asynchrony - Асинхроность
+function checkRoom (success, failed) {
+    setTimeout(function(){
+
+        console.log('Проверяем номера в отеле...')
+        const availableRooms = true;
+
+        if (availableRooms) {
+            let message = 'Номера есть';
+            success(message);
+        }   else {
+            let message = 'Нет свободных номеров';
+            failed(message);
+        }
+    }, 1000)
+    
+};
+
+function checkAirTicket(message, success, failed) {
+    setTimeout(function() {
+        console.log("--- Functions checkAirTicket ----");
+        console.log('Ответ на предыдущем шаге:', message);
+        console.log('Проверяем авиа билет...')
+        const availableTicket = true;
+
+        if (availableTicket) {
+            let message = 'Билеты есть';
+            success(message); 
+        }   else {
+            let message = 'Билетов нет';
+            failed(message); 
+        }
+
+
+    },500)
+};
+
+function cancelVacation(message) {
+    console.log('--- cancelVacation ---');
+    console.log('Ответ на предыдущем шаге:', message);
+    console.log('Отпуск отменяется :(');
+};
+
+function submitVacation(message) {
+    console.log('--- submitVacation ---');
+    console.log('Ответ на предыдущем шаге:', message);
+    console.log('Едем в отпуск! :)');
+};
+
+
+checkRoom(
+    function(messageFromCheckRooms) {
+    //submitVacation(messageFromCheckRooms)
+    checkAirTicket(
+        messageFromCheckRooms, 
+        function(messageFromCheckTiket) {
+            submitVacation(messageFromCheckTiket)
+        },
+        function(messageFromCheckTiket) {
+            cancelVacation(messageFromCheckTiket)
+
+        })
+    }, 
+    function(messageFromCheckRooms) {
+        cancelVacation(messageFromCheckRooms)
+});
 
 
 
@@ -362,8 +761,25 @@ man2.sayHi('VDK45')
 
 
 
-// ============ 8.4   =============
-console.log('============ 8.4   =============');  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

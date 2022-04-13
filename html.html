@@ -4,31 +4,44 @@
 	<head>
 	</head>
 	<body>
+		<header>
+			<h1>JavaScript Для начинающих</h1>
+			<div class="school-name">Урок от ВебКадеми</div>
+		</header>
 		<p>
-			Tag p
+			Tag p1
+		</p>
+		<p>
+			Tag p2
+		</p>
+		<p>
+			Tag p3
 		</p>
 		<hr />
 		<b  class = 'tag_p'>
-			Tag b = color: black; font-size: 20; border: red 1px solid;
+			Tag b = font-size: 20; border: red 1px solid;
 		</b>
-		<hr />
-		<button>
-			Tag button
-		</button>
-		<hr />
+			
 		<textarea>
 			textarea
 		</textarea>
 		<hr />
 		<p>
-			<img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png'  />
+			<img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png' id = 'logo_js'  />
 		</p>
 		<hr />
 		input <input value = 'input value' id= 'input_id' class= 'my_class my_class_2'/>
 
 		<p>
-			<img src = 'js.png' />
+			<img src = 'js.png' id = 'logoJs' alt="Логотип" />
 		</p>
+		<input id='delLogoButton' type="submit" value="Кнопка удалить лого"/>
+		<hr />
+		<button >
+			Tag button 
+		</button>
+
+		<hr />
 
 		<a href='https://ya.ru/'>
 			Yandex.ru
@@ -49,47 +62,112 @@
 
 
 		<link href="index.css" rel="stylesheet" />
+		
+		<input id='button' type="submit" value="Кнопка" />
+
+		<!-- Работа с прослушкой событий -->
+		<div class="dom-example">
+			<form action="">
+				<input type="text" class="input-text" id="input-text" >
+				<div class="text-block" id="text-block">...</div>
+			</form>
+		</div>
+
+		<div>
+			<h2>Объект event</h2>
+			<h3>Список задач</h3>
+				<ul id="list">
+					<li>Посмотреть вебинар</li>
+					<li>Написать конспект</li>
+					<li><button>Button</button></li>
+					<li>Повторить код с урока</li>
+				</ul>
+		</div>
+
+		<!-- Создание элементов -->
+
+		<div class="dom-example none">
+			<h2>Создание и копирование элементов</h2>
+
+			<div id= "elementsContainer"> </div>
+		</div>
+
+		<!-- TODO список задач -->
+		<div class="simple-todo">
+			<div class="task-wrapper">
+				<h2>Список задач</h2>
+				<ul id="todo-list">
+					<li>Посмотреть вебинар</li>
+					<li>Написать конспект</li>
+					<li>Повторить код с урока</li>
+				</ul>
+			</div>
+			<form id="todo-form">
+				<input id="todo-input" type="text" placeholder="Введите текст: " />
+				<button type="submit">Добавить задачу</button>
+			</form>
+		</div>
+
+		<!-- Timer setInterval -->
+		<div>
+			<div class="counter" id="counter" >0</div>
+			<button role="button" id="start">Start</button>
+			<button role="button" id="pause">Pause</button>
+			<button role="button" id="reset">Reset</button>
+
+		</div>
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		<script src="./main.js"></script>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

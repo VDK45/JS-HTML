@@ -1,7 +1,7 @@
 
-img {
-	width: 50px;
-}
+/* img {
+	width: 150px;
+} */
 	
 input {
 	width: 350px;
@@ -31,4 +31,31 @@ input {
 	padding: 5px;
 }
 
+/* Обводка  */
+.red {
+	border: 1px solid red;
+}
 
+/* Обводка  */
+.blue {
+	border: 1px solid blue;
+}
+
+.red_text {
+	color: red;
+}
+
+.green_text {
+	color: green;
+}
+
+.dom-example {
+	border: 1px solid blue;
+}
+
+.counter {
+	color: green;
+	font-size: 40px;
+	margin-left: 50px;
+	padding: 5px;
+}
