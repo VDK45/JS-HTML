@@ -683,80 +683,122 @@ idReset.onclick = function() {
 //     }, 2000);
 // }, 3000);
 
-// Asynchrony - Асинхроность
-function checkRoom (success, failed) {
-    setTimeout(function(){
+// ============ Asynchrony - Асинхроность ===========
 
-        console.log('Проверяем номера в отеле...')
-        const availableRooms = true;
+// function checkRoom (success, failed) {
+//     setTimeout(function(){
 
-        if (availableRooms) {
-            let message = 'Номера есть';
-            success(message);
-        }   else {
-            let message = 'Нет свободных номеров';
-            failed(message);
-        }
-    }, 1000)
+//         console.log('Проверяем номера в отеле...')
+//         const availableRooms = true;
+
+//         if (availableRooms) {
+//             let message = 'Номера есть';
+//             success(message);
+//         }   else {
+//             let message = 'Нет свободных номеров';
+//             failed(message);
+//         }
+//     }, 1000)
     
-};
+// };
 
-function checkAirTicket(message, success, failed) {
+// function checkAirTicket(message, success, failed) {
+//     setTimeout(function() {
+//         console.log("--- Functions checkAirTicket ----");
+//         console.log('Ответ на предыдущем шаге:', message);
+//         console.log('Проверяем авиа билет...')
+//         const availableTicket = true;
+
+//         if (availableTicket) {
+//             let message = 'Билеты есть';
+//             success(message); 
+//         }   else {
+//             let message = 'Билетов нет';
+//             failed(message); 
+//         }
+
+
+//     },500)
+// };
+
+// function cancelVacation(message) {
+//     console.log('--- cancelVacation ---');
+//     console.log('Ответ на предыдущем шаге:', message);
+//     console.log('Отпуск отменяется :(');
+// };
+
+// function submitVacation(message) {
+//     console.log('--- submitVacation ---');
+//     console.log('Ответ на предыдущем шаге:', message);
+//     console.log('Едем в отпуск! :)');
+// };
+
+
+// checkRoom(
+//     function(messageFromCheckRooms) {
+//     //submitVacation(messageFromCheckRooms)
+//     checkAirTicket(
+//         messageFromCheckRooms, 
+//         function(messageFromCheckTiket) {
+//             submitVacation(messageFromCheckTiket)
+//         },
+//         function(messageFromCheckTiket) {
+//             cancelVacation(messageFromCheckTiket)
+
+//         })
+//     }, 
+//     function(messageFromCheckRooms) {
+//         cancelVacation(messageFromCheckRooms)
+// });
+
+// ============ Создание промиса ==============
+console.log('=================== Создание промиса Promise async (Цепочка promise асинхронная) =====================')
+
+const myPromise = new Promise(function(resolve, reject) {
+    console.log('Promise created');
     setTimeout(function() {
-        console.log("--- Functions checkAirTicket ----");
-        console.log('Ответ на предыдущем шаге:', message);
-        console.log('Проверяем авиа билет...')
-        const availableTicket = true;
-
-        if (availableTicket) {
-            let message = 'Билеты есть';
-            success(message); 
+        // request to server
+        const response = true;
+        if (response) {
+            let message = 'SUCCESS';
+            resolve(message);
         }   else {
-            let message = 'Билетов нет';
-            failed(message); 
+            let message = 'FAILED';
+            reject(message);
         }
+    }, 1500)
+}) // .then(function(data) {  // Можно и так 
+
+myPromise.then(function(data) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            console.log('Then 1');
+            console.log(data);
+
+            // Передать then 2 
+            const response = true;
+            if (response) {
+                let message = 'SUCCESS from then 1';
+                resolve(message);
+            }   else {
+                let message = 'FAILED from then 1';
+                reject(message);
+            }
 
 
-    },500)
-};
+        }, 1000);
+    })
 
-function cancelVacation(message) {
-    console.log('--- cancelVacation ---');
-    console.log('Ответ на предыдущем шаге:', message);
-    console.log('Отпуск отменяется :(');
-};
+}).then(function(data2) {
+    setTimeout(() => {
+        console.log('Then 2');
+        console.log(data2);
+    }, 500);
 
-function submitVacation(message) {
-    console.log('--- submitVacation ---');
-    console.log('Ответ на предыдущем шаге:', message);
-    console.log('Едем в отпуск! :)');
-};
-
-
-checkRoom(
-    function(messageFromCheckRooms) {
-    //submitVacation(messageFromCheckRooms)
-    checkAirTicket(
-        messageFromCheckRooms, 
-        function(messageFromCheckTiket) {
-            submitVacation(messageFromCheckTiket)
-        },
-        function(messageFromCheckTiket) {
-            cancelVacation(messageFromCheckTiket)
-
-        })
-    }, 
-    function(messageFromCheckRooms) {
-        cancelVacation(messageFromCheckRooms)
+}).catch(function (data) {
+    console.log('Catch');
+    console.log(data);
 });
-
-
-
-
-
-
-
-
 
 
 
